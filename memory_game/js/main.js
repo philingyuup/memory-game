@@ -1,7 +1,29 @@
 console.log("Up and running!");
 
-let cards = ["queen", "queen", "king", "king"];
 let cardsInPlay = [];
+const cards = [
+	{
+		rank: "queen",
+		suit: "hearts",
+		cardImage: "images/queen-of-hearts.png"
+	},
+	{
+		rank: "queen",
+		suit: "diamonds", 
+		cardImage: "images/queen-of-diamonds.png"
+	},
+	{
+		rank: "king",
+		suit: "hearts", 
+		cardImage: "images/king-of-hearts.png"
+	},
+	{
+		rank: "king",
+		suit: "diamonds",
+		cardImage: "images/king-of-diamonds.png"
+	}
+
+];
 
 function checkForMath(){
 	if (cardsInPlay.length === 2) {
@@ -13,10 +35,12 @@ function checkForMath(){
 }
 
 function flipCard (cardID){
-	console.log("User flipped " + cards[cardID]);
-	cardsInPlay.push(cards[cardID]);
+	console.log("User flipped " + cards[cardID].rank);
+	console.log(cards[cardID].suit);
+	console.log(cards[cardID].cardImage);
+	cardsInPlay.push(cards[cardID].rank);
 	checkForMath();
 }
 
 flipCard(0);
-flipCard(1);
+flipCard(2);
