@@ -34,13 +34,35 @@ function checkForMath(){
 }
 }
 
-function flipCard (cardID){
-	console.log("User flipped " + cards[cardID].rank);
-	console.log(cards[cardID].suit);
-	console.log(cards[cardID].cardImage);
-	cardsInPlay.push(cards[cardID].rank);
+function flipCard (){
+	let cardId = cardsInPlay.push(cards[this.getAttribute('data-id')]);
+	this.setAttribute('src', cards[cardId].cardImage);
 	checkForMath();
 }
 
-flipCard(0);
-flipCard(2);
+const createBoard = function() {
+	for (let i = 0; i<cards.length; ++i) {
+		let cardElement = document.createElement('img');
+		cardElement.setAttribute('src','images/back.png');
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+};
+
+createBoard();
+
+function resetBoard() {
+	let boardNode = document.getElementById('game-board').children;
+	for (let i = 0; i < boardNode.length; ++i) {
+		boardNode[i].setAttribute('src', 'images/back.png');
+	}
+	cardsInPlay = [];
+	/*while (board.hasChildNodes()){
+		board.removeChild(board.firstChild)
+	};
+	createBoard();*/
+};
+
+document.querySelector('button').addEventListener('click', resetBoard);
+
